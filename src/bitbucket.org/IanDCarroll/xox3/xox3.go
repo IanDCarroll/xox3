@@ -1,7 +1,9 @@
 package main
 
-import "bitbucket.org/IanDCarroll/xox3/ui/terminal"
+import "fmt"
 
 func main() {
-    terminal.Display(terminal.Welcome())
+    menu := BuildMenu()
+    params := menu.GetGameParams()
+    fmt.Println(params)
 }

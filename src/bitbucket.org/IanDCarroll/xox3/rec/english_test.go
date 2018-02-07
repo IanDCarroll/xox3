@@ -1,4 +1,4 @@
-package terminal
+package rec
 
 import (
   "testing"
@@ -6,9 +6,10 @@ import (
 )
 
 func TestWelcomeReturnsAStringWithWelcome(t *testing.T) {
-  //Given no input
+  //Given
+  subject := NewEnglish()
   //When
-  actual := Welcome()
+  actual := subject.Welcome()
   //Then
   expected := "Welcome"
   assertContains(t, actual, expected)
