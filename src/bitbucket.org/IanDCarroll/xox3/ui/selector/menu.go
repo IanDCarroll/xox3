@@ -10,6 +10,6 @@ func NewMenu(shell shell.Shell) menu {
   return menu {shell}
 }
 
-func (m menu) ReadFromShell() int {
+func (m menu) ReadFromShell() string {
   return m.shell.Read()
 }

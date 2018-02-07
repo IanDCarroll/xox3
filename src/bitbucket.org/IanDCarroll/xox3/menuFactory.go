@@ -9,28 +9,26 @@ import (
   "bitbucket.org/IanDCarroll/xox3/ui/display/rec"
 )
 
-var TerminalShell shell.Shell = shell.NewTerminal()
-
-func BuildMenu() menu.Menu {
-  ui := BuildMenuUI()
+func BuildMenu(shell shell.Shell) menu.Menu {
+  ui := BuildMenuUI(shell)
   rec := BuildEnglishMenuRec()
   return menu.New(ui, rec)
 }
 
-func BuildEnglishMenuRec() rec.Rec {
+func BuildEnglishMenuRec() rec.MenuRec {
   return rec.NewEnglishMenu()
 }
 
-func BuildMenuUI() ui.Ui {
-  display := BuildMenuDisplay()
-  selector := BuildMenuSelector()
+func BuildMenuUI(shell shell.Shell) ui.Ui {
+  display := BuildMenuDisplay(shell)
+  selector := BuildMenuSelector(shell)
   return ui.New(display, selector)
 }
 
-func BuildMenuSelector() selector.Selector {
-  return selector.NewMenu(TerminalShell)
+func BuildMenuSelector(shell shell.Shell) selector.Selector {
+  return selector.NewMenu(shell)
 }
 
-func BuildMenuDisplay() display.Display {
-  return display.NewMenu(TerminalShell)
+func BuildMenuDisplay(shell shell.Shell) display.Display {
+  return display.NewMenu(shell)
 }
