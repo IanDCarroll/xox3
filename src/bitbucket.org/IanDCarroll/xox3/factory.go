@@ -6,19 +6,19 @@ import (
   "bitbucket.org/IanDCarroll/xox3/ui/selector"
   "bitbucket.org/IanDCarroll/xox3/ui"
   "bitbucket.org/IanDCarroll/xox3/menu"
-  "bitbucket.org/IanDCarroll/xox3/rec"
+  "bitbucket.org/IanDCarroll/xox3/ui/display/rec"
 )
 
 var TerminalShell shell.Shell = shell.NewTerminal()
 
 func BuildMenu() menu.Menu {
   ui := BuildMenuUI()
-  rec := BuildEnglishRec()
+  rec := BuildEnglishMenuRec()
   return menu.New(ui, rec)
 }
 
-func BuildEnglishRec() rec.Rec {
-  return rec.NewEnglish()
+func BuildEnglishMenuRec() rec.Rec {
+  return rec.NewEnglishMenu()
 }
 
 func BuildMenuUI() ui.Ui {

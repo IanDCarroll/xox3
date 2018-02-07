@@ -1,8 +1,8 @@
 package rec
 
-type english struct {}
+type englishMenu struct {}
 
-func NewEnglish() english { return english {} }
+func NewEnglishMenu() englishMenu { return englishMenu {} }
 
 var welcome string = `
 Welcome to xox3: an unbeatable game of noughts and crosses!
@@ -11,6 +11,6 @@ Be amazed at your inability to ever win against this mighty juggernaut!
 ( Actual game coming soon... )
 `
 
-func (e english) Welcome() string {
+func (e englishMenu) Welcome() string {
   return welcome
 }
