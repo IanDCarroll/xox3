@@ -1,6 +1,9 @@
 package shell
 
-type Shell interface {
-  Write(string)
-  Read() string
+type ShellOut interface {
+  Write(interface{})
+}
+
+type ShellIn interface {
+  Read() interface{}
 }

@@ -8,24 +8,24 @@ import (
   "bitbucket.org/IanDCarroll/xox3/ui/display/rec"
 )
 
-type shellStub struct { shellOut string }
-func (s shellStub) Read() string { return "2" }
-func (s shellStub) Write(message string) { s.shellOut = message }
+type shellStub struct { shellOutput string }
+func (s shellStub) Read() interface{} { return "2" }
+func (s shellStub) Write(message interface{}) { s.shellOutput = message.(string) }
 
 func buildEnglishMenuRec() rec.MenuRec {
   return rec.NewEnglishMenu()
 }
 
-func buildMenuUI(shell shell.Shell) ui.Ui {
-  display := buildMenuDisplay(shell)
-  selector := buildMenuSelector(shell)
+func buildMenuUI(shellOut shell.ShellOut, shellIn shell.ShellIn) ui.Ui {
+  display := buildMenuDisplay(shellOut)
+  selector := buildMenuSelector(shellIn)
   return ui.New(display, selector)
 }
 
-func buildMenuSelector(shell shell.Shell) selector.Selector {
-  return selector.NewMenu(shell)
+func buildMenuDisplay(shell shell.ShellOut) display.Display {
+  return display.NewMenu(shell)
 }
 
-func buildMenuDisplay(shell shell.Shell) display.Display {
-  return display.NewMenu(shell)
+func buildMenuSelector(shell shell.ShellIn) selector.Selector {
+  return selector.NewMenu(shell)
 }

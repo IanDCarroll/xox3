@@ -1,13 +1,9 @@
 package main
 
-import (
-  "fmt"
-  "bitbucket.org/IanDCarroll/xox3/ui/shell"
-)
+import "fmt"
 
 func main() {
-  shell := shell.NewTerminal()
-  menu := BuildMenu(shell)
+  menu := BuildMenu()
   order, marker := menu.GetGameParams()
   fmt.Println("main got : ", order, " ", marker)
 }

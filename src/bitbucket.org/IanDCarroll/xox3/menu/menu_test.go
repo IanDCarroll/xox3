@@ -7,7 +7,7 @@ import (
 func TestGetGameParamsReturnsTwoInts(t *testing.T) {
   //Given
   shell := shellStub {}
-  subject := New(buildMenuUI(shell), buildEnglishMenuRec())
+  subject := New(buildMenuUI(shell, shell), buildEnglishMenuRec())
   //When
   actualOrder, actualMarker := subject.GetGameParams()
   //Then

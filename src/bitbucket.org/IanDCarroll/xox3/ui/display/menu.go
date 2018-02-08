@@ -3,10 +3,10 @@ package display
 import "bitbucket.org/IanDCarroll/xox3/ui/shell"
 
 type menu struct {
-  shell shell.Shell
+  shell shell.ShellOut
 }
 
-func NewMenu(shell shell.Shell) menu {
+func NewMenu(shell shell.ShellOut) menu {
   return menu {shell}
 }
 

@@ -10,11 +10,11 @@ func NewTerminal() terminal {
   return terminal {}
 }
 
-func (t terminal) Write(message string) {
+func (t terminal) Write(message interface{}) {
   fmt.Println(message)
 }
 
-func (t terminal) Read() string {
+func (t terminal) Read() interface{} {
   var input string
   fmt.Scanln(&input)
   return input

@@ -3,13 +3,13 @@ package selector
 import "bitbucket.org/IanDCarroll/xox3/ui/shell"
 
 type menu struct {
-  shell shell.Shell
+  shell shell.ShellIn
 }
 
-func NewMenu(shell shell.Shell) menu {
+func NewMenu(shell shell.ShellIn) menu {
   return menu {shell}
 }
 
 func (m menu) ReadFromShell() string {
-  return m.shell.Read()
+  return m.shell.Read().(string)
 }
