@@ -18,3 +18,7 @@ An Unbeatable Noughts and Crosses Game
 ### Test ###
 
 - from project root `go test ./...`
+
+### Common Snags ###
+
+if go can't find any of the projects packages, you might need to [set the GOPATH](https://github.com/golang/go/wiki/SettingGOPATH)
