@@ -5,15 +5,20 @@ import (
   "bitbucket.org/IanDCarroll/xox3/ui/display"
   "bitbucket.org/IanDCarroll/xox3/ui/selector"
   "bitbucket.org/IanDCarroll/xox3/ui"
-  "bitbucket.org/IanDCarroll/xox3/ui/display/rec"
+  "bitbucket.org/IanDCarroll/xox3/menu/rec"
 )
 
-type shellStub struct { shellOutput string }
-func (s shellStub) Read() interface{} { return "2" }
-func (s shellStub) Write(message interface{}) { s.shellOutput = message.(string) }
+var terminalOut shell.ShellOut = shell.NewTerminal()
+var terminalIn shell.ShellIn = shell.NewTerminal()
 
-func buildEnglishMenuRec() rec.MenuRec {
-  return rec.NewEnglishMenu()
+func BuildMenu() Menu {
+  ui := buildMenuUI(terminalOut, terminalIn)
+  rec := buildEnglishRec()
+  return New(ui, rec)
+}
+
+func buildEnglishRec() rec.Rec {
+  return rec.NewEnglish()
 }
 
 func buildMenuUI(shellOut shell.ShellOut, shellIn shell.ShellIn) ui.Ui {
@@ -23,9 +28,9 @@ func buildMenuUI(shellOut shell.ShellOut, shellIn shell.ShellIn) ui.Ui {
 }
 
 func buildMenuDisplay(shell shell.ShellOut) display.Display {
-  return display.NewMenu(shell)
+  return NewMenuDisplay(shell)
 }
 
 func buildMenuSelector(shell shell.ShellIn) selector.Selector {
-  return selector.NewMenu(shell)
+  return NewMenuSelector(shell)
 }

@@ -1,9 +1,12 @@
 package main
 
-import "fmt"
+import (
+  "fmt"
+  "bitbucket.org/IanDCarroll/xox3/menu"
+)
 
 func main() {
-  menu := BuildMenu()
+  menu := menu.BuildMenu()
   order, marker := menu.GetGameParams()
   fmt.Println("main got : ", order, " ", marker)
 }

@@ -2,9 +2,9 @@ package rec
 
 import "strconv"
 
-type englishMenu struct {}
+type english struct {}
 
-func NewEnglishMenu() englishMenu { return englishMenu {} }
+func NewEnglish() english { return english {} }
 
 var welcome string = `
 Welcome to xox3: an unbeatable game of noughts and crosses!
@@ -43,11 +43,11 @@ And without further ado,
 Let the game begin...
 `
 
-func (e englishMenu) Welcome() string { return welcome }
+func (e english) Welcome() string { return welcome }
 
-func (e englishMenu) WhichPlayer() string { return whichPlayer }
+func (e english) WhichPlayer() string { return whichPlayer }
 
-func (e englishMenu) WhichMarker() string {
+func (e english) WhichMarker() string {
   whichMarkerWithOptions := whichMarker
   for i := 0; i < len(markers); i++ {
     whichMarkerWithOptions += strconv.Itoa(i + 1) + " - " + markers[i] + "\n"
@@ -55,7 +55,7 @@ func (e englishMenu) WhichMarker() string {
   return whichMarkerWithOptions
 }
 
-func (e englishMenu) Markers() []string {
+func (e english) Markers() []string {
   anyMarkers := make([]string, len(markers))
   for i := 0; i < len(markers); i++ {
     anyMarkers[i] = markers[i]
@@ -63,6 +63,6 @@ func (e englishMenu) Markers() []string {
   return anyMarkers
 }
 
-func (e englishMenu) BadSelection() string { return badSelection }
+func (e english) BadSelection() string { return badSelection }
 
-func (e englishMenu) StartGame() string { return startGame }
+func (e english) StartGame() string { return startGame }

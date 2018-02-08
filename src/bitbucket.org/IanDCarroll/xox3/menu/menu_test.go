@@ -7,7 +7,7 @@ import (
 func TestGetGameParamsReturnsTwoInts(t *testing.T) {
   //Given
   shell := shellStub {}
-  subject := New(buildMenuUI(shell, shell), buildEnglishMenuRec())
+  subject := New(buildMenuUI(shell, shell), buildEnglishRec())
   //When
   actualOrder, actualMarker := subject.GetGameParams()
   //Then
@@ -21,3 +21,7 @@ func assertEqual(t *testing.T, name string, actual int, expected int) {
     t.Errorf("\n%q was %q\nshould have been\n%q", name, actual, expected)
   }
 }
+
+type shellStub struct { shellOutput string }
+func (s shellStub) Read() interface{} { return "2" }
+func (s shellStub) Write(message interface{}) { s.shellOutput = message.(string) }

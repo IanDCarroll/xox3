@@ -1,6 +1,6 @@
 package rec
 
-type MenuRec interface {
+type Rec interface {
   Welcome() string
   WhichPlayer() string
   WhichMarker() string

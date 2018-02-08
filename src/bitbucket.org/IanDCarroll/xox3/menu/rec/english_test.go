@@ -7,7 +7,7 @@ import (
 
 func TestWelcomeReturnsAStringWithWelcome(t *testing.T) {
   //Given
-  subject := NewEnglishMenu()
+  subject := NewEnglish()
   //When
   actual := subject.Welcome()
   //Then
