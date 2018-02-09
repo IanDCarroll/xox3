@@ -10,6 +10,6 @@ func NewMenuSelector(shell shell.ShellIn) menuSelector {
   return menuSelector {shell}
 }
 
-func (m menuSelector) ReadFromShell() string {
-  return m.shell.Read().(string)
+func (m menuSelector) ReadFromShell() interface{} {
+  return m.shell.Read()
 }

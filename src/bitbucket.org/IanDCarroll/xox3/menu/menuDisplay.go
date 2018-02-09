@@ -10,6 +10,6 @@ func NewMenuDisplay(shell shell.ShellOut) menuDisplay {
   return menuDisplay {shell}
 }
 
-func (m menuDisplay) WriteToShell(message string) {
+func (m menuDisplay) WriteToShell(message interface{}) {
   m.shell.Write(message)
 }

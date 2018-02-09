@@ -7,8 +7,8 @@ import (
 )
 
 type Ui interface {
-  GiveToDisplay(string)
-  GetFromSelector() string
+  GiveToDisplay(interface{})
+  GetFromSelector() interface{}
 }
 
 type ui struct {
@@ -20,10 +20,10 @@ func New(display display.Display, selector selector.Selector) ui {
   return ui {display, selector}
 }
 
-func (ui ui) GiveToDisplay(message string) {
+func (ui ui) GiveToDisplay(message interface{}) {
   ui.display.WriteToShell(message)
 }
 
-func (ui ui) GetFromSelector() string {
+func (ui ui) GetFromSelector() interface{} {
   return ui.selector.ReadFromShell()
 }

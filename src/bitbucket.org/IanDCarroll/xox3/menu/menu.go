@@ -41,7 +41,7 @@ func (m menu) askForMarker() int {
 
 func (m menu) ask(choices int) int {
   rawInput := m.ui.GetFromSelector()
-  playOrder, err := strconv.Atoi(rawInput)
+  playOrder, err := strconv.Atoi(rawInput.(string))
   if m.invalid(playOrder, err, choices) { return m.retry(m.askForPlayOrder) }
   return playOrder
 }

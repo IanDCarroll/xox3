@@ -1,5 +1,5 @@
 package display
 
 type Display interface {
-  WriteToShell(string)
+  WriteToShell(interface{})
 }

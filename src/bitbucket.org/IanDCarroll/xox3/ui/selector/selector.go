@@ -1,5 +1,5 @@
 package selector
 
 type Selector interface {
-  ReadFromShell() string
+  ReadFromShell() interface{}
 }
