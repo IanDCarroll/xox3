@@ -4,7 +4,6 @@ import (
   "bitbucket.org/IanDCarroll/xox3/ui"
   "bitbucket.org/IanDCarroll/xox3/rules"
   "bitbucket.org/IanDCarroll/xox3/board"
-  "strconv"
 )
 
 type Player interface {
@@ -29,16 +28,7 @@ func (p player) TakeATurn() (bool, int) {
 }
 
 func (p player) showBoard() {
-  p.ui.GiveToDisplay(p.toCSV(p.board.View()))
-}
-
-func (p player) toCSV(board []int) string {
-  csv := ""
-  for i := 0; i < len(board); i++ {
-    csv += strconv.Itoa(board[i])
-    if i != len(board)-1 { csv += "," }
-  }
-  return csv
+  p.ui.GiveToDisplay(p.marker)
 }
 
 func (p player) markASpace() {

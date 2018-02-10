@@ -59,29 +59,6 @@ func TestPlayerReturnsAWonGameState(t *testing.T) {
   assertEqual(t, "Marker Value", actualMarker, expectedMarker)
 }
 
-func TestToCSVconvertsAnEmptyBoard(t *testing.T) {
-  //Given
-  board := buildMNK3Board()
-  subject := buildTestPlayer(board)
-  //When
-  actual := subject.toCSV(board.View())
-  //Then
-  expected := "0,0,0,0,0,0,0,0,0"
-  assertEqual(t, "Display Value", actual, expected)
-}
-
-func TestToCSVconvertsAPlayedBoard(t *testing.T) {
-  //Given
-  board := buildMNK3Board()
-  subject := buildTestPlayer(board)
-  board.Mark(0, 1)
-  //When
-  actual := subject.toCSV(board.View())
-  //Then
-  expected := "1,0,0,0,0,0,0,0,0"
-  assertEqual(t, "Display Value", actual, expected)
-}
-
 func assertEqual(t *testing.T, name string, actual, expected interface{}) {
   if actual != expected {
     t.Errorf("\n%q was %q\nshould have been\n%q", name, actual, expected)
