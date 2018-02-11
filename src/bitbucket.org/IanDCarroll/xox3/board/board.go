@@ -5,16 +5,22 @@ type Board interface {
   Mark(int, int)
   AvailableSpaces() []int
   Size() int
+  Width() int
+  Height() int
 }
 
 type board struct {
   spaces []int
+  width int
+  height int
 }
 
 func NewMNKX(mnkValue int) board {
-  size := mnkValue * mnkValue
+  width := mnkValue
+  height := mnkValue
+  size := height * width
   spaces := make([]int, size)
-  return board{spaces}
+  return board{spaces, width, height}
 }
 
 func (b board) View() []int { return b.spaces }
@@ -31,6 +37,8 @@ func (b board) AvailableSpaces() []int {
   return available
 }
 
-func (b board) Size() int {
-  return len(b.spaces)
-}
+func (b board) Size() int { return len(b.spaces) }
+
+func (b board) Width() int { return b.width }
+
+func (b board) Height() int { return b.height }
