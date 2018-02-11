@@ -1,3 +1,5 @@
 package aiRec
 
-type Rec interface {}
+type Rec interface {
+  AiMove() string
+}

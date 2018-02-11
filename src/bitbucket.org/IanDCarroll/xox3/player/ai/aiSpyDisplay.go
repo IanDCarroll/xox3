@@ -15,5 +15,5 @@ func NewAiSpyDisplay(rec aiRec.Rec, spy display.Display) aiSpyDisplay {
 }
 
 func (d aiSpyDisplay) WriteToShell(message interface{}) {
-  d.spy.WriteToShell("A Sassy Message")
+  d.spy.WriteToShell(d.rec.AiMove())
 }

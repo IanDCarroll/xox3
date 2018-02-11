@@ -46,6 +46,9 @@ Let the game begin...
 var playerMovePart1 string = "\nIt's player "
 var playerMovePart2 string = "'s turn...\n"
 
+var aiMove string = "The Binary Logic Cortex will now make a PERFECT move,\n" +
+                    "One that is INCOMPREHENSIBLE to your feeble human mind..."
+
 func (e english) Welcome() string { return welcome }
 
 func (e english) WhichPlayer() string { return whichPlayer }
@@ -73,3 +76,5 @@ func (e english) StartGame() string { return startGame }
 func (e english) PlayerMove(name string) string {
   return playerMovePart1 + name + playerMovePart2
 }
+
+func (e english) AiMove() string { return aiMove }
