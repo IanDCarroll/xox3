@@ -7,11 +7,11 @@ import (
   "bitbucket.org/IanDCarroll/xox3/rules"
   "bitbucket.org/IanDCarroll/xox3/board"
   "bitbucket.org/IanDCarroll/xox3/player/human"
-  "bitbucket.org/IanDCarroll/xox3/player/human/rec"
+  "bitbucket.org/IanDCarroll/xox3/player/human/boardRec"
 )
 
 
-func BuildHumanMNK3Player(marker int, rec rec.Rec, board board.Board) player {
+func BuildHumanMNK3Player(marker int, rec boardRec.Rec, board board.Board) player {
   ui := human.BuildHumanUi(rec, board)
   rules := buildMNK3Rules()
   return New(ui, rules, board, marker)

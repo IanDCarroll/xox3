@@ -1,4 +1,4 @@
-package rec
+package menuRec
 
 type Rec interface {
   Welcome() string

@@ -43,6 +43,9 @@ And without further ado,
 Let the game begin...
 `
 
+var playerMovePart1 string = "\nIt's player "
+var playerMovePart2 string = "'s turn...\n"
+
 func (e english) Welcome() string { return welcome }
 
 func (e english) WhichPlayer() string { return whichPlayer }
@@ -66,3 +69,7 @@ func (e english) Markers() []string {
 func (e english) BadSelection() string { return badSelection }
 
 func (e english) StartGame() string { return startGame }
+
+func (e english) PlayerMove(name string) string {
+  return playerMovePart1 + name + playerMovePart2
+}

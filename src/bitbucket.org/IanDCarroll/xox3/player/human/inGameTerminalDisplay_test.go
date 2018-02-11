@@ -2,13 +2,14 @@ package human
 
 import (
   "testing"
-  "bitbucket.org/IanDCarroll/xox3/player/human/rec"
+  "bitbucket.org/IanDCarroll/xox3/rec"
+  "bitbucket.org/IanDCarroll/xox3/player/human/boardRec"
   "bitbucket.org/IanDCarroll/xox3/board"
 )
 
 func TestBuildTheCurrentBoardReturnsAnInitialFormattedBoard(t *testing.T) {
   //Given
-  subject := NewInGameTerminalDisplay(shellStub {}, rec.NewTerminal(), board.NewMNKX(3))
+  subject := NewBoardDisplay(shellStub {}, boardRec.NewTerminalRec(), board.NewMNKX(3))
   //When
   actual := subject.buildTheCurrentBoard()
   //Then
@@ -22,7 +23,7 @@ func TestBuildTheCurrentBoardReturnsAnInitialFormattedBoard(t *testing.T) {
 
 func TestBuildTheCurrentBoardReturnsAFormatted4x4Board(t *testing.T) {
   //Given
-  subject := NewInGameTerminalDisplay(shellStub {}, rec.NewTerminal(), board.NewMNKX(4))
+  subject := NewBoardDisplay(shellStub {}, boardRec.NewTerminalRec(), board.NewMNKX(4))
   //When
   actual := subject.buildTheCurrentBoard()
   //Then
@@ -40,7 +41,7 @@ func TestSizeCellsReturnsTheRightCellSize(t *testing.T) {
   //Given
   board := board.NewMNKX(3)
   //When
-  subject := NewInGameTerminalDisplay(shellStub {}, rec.NewTerminal(), board)
+  subject := NewBoardDisplay(shellStub {}, boardRec.NewTerminalRec(), board)
   //Then
   actual := subject.cellSize
   expected := 3
@@ -51,7 +52,7 @@ func TestSizeCellsReturnsTheRightCellSizeFor4x4Boards(t *testing.T) {
   //Given
   board := board.NewMNKX(4)
   //When
-  subject := NewInGameTerminalDisplay(shellStub {}, rec.NewTerminal(), board)
+  subject := NewBoardDisplay(shellStub {}, boardRec.NewTerminalRec(), board)
   //Then
   actual := subject.cellSize
   expected := 4
@@ -62,7 +63,7 @@ func TestSizeCellsReturnsTheRightCellSizeFor10x10Boards(t *testing.T) {
   //Given
   board := board.NewMNKX(10)
   //When
-  subject := NewInGameTerminalDisplay(shellStub {}, rec.NewTerminal(), board)
+  subject := NewBoardDisplay(shellStub {}, boardRec.NewTerminalRec(), board)
   //Then
   actual := subject.cellSize
   expected := 5
@@ -72,7 +73,7 @@ func TestSizeCellsReturnsTheRightCellSizeFor10x10Boards(t *testing.T) {
 func TestAnnounceMessageReturnsAMessageFromThePlayersNumber(t *testing.T) {
   //Given
   marker := 1
-  subject := NewInGameTerminalDisplay(shellStub {}, rec.NewTerminal(), board.NewMNKX(3))
+  subject := NewMessageDisplay(shellStub {}, rec.NewEnglish())
   //When
   actual := subject.announceMessage(marker)
   //Then
@@ -84,7 +85,7 @@ func TestAnnounceMessageReturnsAMessageFromThePlayersNumber(t *testing.T) {
 func TestAnnounceMessageReturnsAnyArbitraryPlayerNumer(t *testing.T) {
   //Given
   marker := 2
-  subject := NewInGameTerminalDisplay(shellStub {}, rec.NewTerminal(), board.NewMNKX(3))
+  subject := NewMessageDisplay(shellStub {}, rec.NewEnglish())
   //When
   actual := subject.announceMessage(marker)
   //Then
@@ -95,7 +96,7 @@ func TestAnnounceMessageReturnsAnyArbitraryPlayerNumer(t *testing.T) {
 func TestAnnounceMessagereturnsAnOverridingMessageString(t *testing.T) {
   //Given
   marker := "This is an overriding message from something other than player"
-  subject := NewInGameTerminalDisplay(shellStub {}, rec.NewTerminal(), board.NewMNKX(3))
+  subject := NewMessageDisplay(shellStub {}, rec.NewEnglish())
   //When
   actual := subject.announceMessage(marker)
   //Then

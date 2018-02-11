@@ -3,7 +3,7 @@ package menu
 import (
   "strconv"
   "bitbucket.org/IanDCarroll/xox3/ui"
-  "bitbucket.org/IanDCarroll/xox3/menu/rec"
+  "bitbucket.org/IanDCarroll/xox3/menu/menuRec"
 )
 
 type Menu interface {
@@ -12,10 +12,10 @@ type Menu interface {
 
 type menu struct {
   ui ui.Ui
-  rec rec.Rec
+  rec menuRec.Rec
 }
 
-func New(ui ui.Ui, rec rec.Rec) menu {
+func New(ui ui.Ui, rec menuRec.Rec) menu {
   return menu {ui, rec}
 }
 

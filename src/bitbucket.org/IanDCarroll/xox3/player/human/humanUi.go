@@ -4,7 +4,7 @@ import (
   "bitbucket.org/IanDCarroll/xox3/ui/display"
   "bitbucket.org/IanDCarroll/xox3/ui/selector"
   "bitbucket.org/IanDCarroll/xox3/board"
-  "bitbucket.org/IanDCarroll/xox3/player/human/rec"
+  "bitbucket.org/IanDCarroll/xox3/player/human/messageRec"
   "strconv"
 )
 
@@ -12,11 +12,11 @@ type humanUi struct {
   display display.Display
   selector selector.Selector
   board board.Board
-  rec rec.Rec
+  rec messageRec.Rec
 
 }
 
-func NewUI(d display.Display, s selector.Selector, b board.Board, r rec.Rec) humanUi {
+func NewUI(d display.Display, s selector.Selector, b board.Board, r messageRec.Rec) humanUi {
   return humanUi {d, s, b, r}
 }
 

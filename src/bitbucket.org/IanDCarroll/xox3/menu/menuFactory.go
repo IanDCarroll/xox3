@@ -5,7 +5,8 @@ import (
   "bitbucket.org/IanDCarroll/xox3/ui/display"
   "bitbucket.org/IanDCarroll/xox3/ui/selector"
   "bitbucket.org/IanDCarroll/xox3/ui"
-  "bitbucket.org/IanDCarroll/xox3/menu/rec"
+  "bitbucket.org/IanDCarroll/xox3/rec"
+  "bitbucket.org/IanDCarroll/xox3/menu/menuRec"
 )
 
 var terminalOut shell.ShellOut = shell.NewTerminal()
@@ -17,7 +18,7 @@ func BuildMenu() Menu {
   return New(ui, rec)
 }
 
-func buildEnglishRec() rec.Rec {
+func buildEnglishRec() menuRec.Rec {
   return rec.NewEnglish()
 }
 
