@@ -68,10 +68,11 @@ func (b boardDisplay) constructDecking() string {
 
 func (b boardDisplay) constructRowSegment(i, end int) string {
   var segment string
-  if b.board.View()[i] == 0 {
+  mark := b.board.View()[i]
+  if mark == 0 {
     segment += b.rec.RowSegment(strconv.Itoa(i + 1), i, end, b.cellSize)
   } else {
-    segment += b.rec.RowSegment("#", i, end, b.cellSize)
+    segment += b.rec.RowSegment(b.rec.Marker(mark), i, end, b.cellSize)
   }
   return segment
 }

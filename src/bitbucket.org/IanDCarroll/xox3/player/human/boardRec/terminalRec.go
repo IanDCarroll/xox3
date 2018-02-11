@@ -5,9 +5,11 @@ import (
   "unicode/utf8"
 )
 
-type terminalRec struct {}
+type terminalRec struct {
+  markers []string
+}
 
-func NewTerminalRec() terminalRec { return terminalRec {} }
+func NewTerminalRec(markers []string) terminalRec { return terminalRec {markers} }
 
 var padding string = " "
 var bulkhead string = "|"
@@ -20,6 +22,10 @@ func (t terminalRec) RowSegment(name string, i, end, cellSize int) string {
 
 func (t terminalRec) DeckSegment(i, end, cellSize int) string {
   return t.segment(decking, decking, joint, i, end, cellSize)
+}
+
+func (t terminalRec) Marker(playerNumber int) string {
+  return t.markers[t.zeroIndex(playerNumber)]
 }
 
 func (t terminalRec) segment(sigil, fill, div string, i, end, cellSize int) string {
@@ -42,4 +48,8 @@ func (t terminalRec) trueLen(sigil string) int {
 
 func (t terminalRec) itsNotTheLastOne(i, end int) bool {
   return i+1 != end
+}
+
+func (t terminalRec) zeroIndex(playerNumber int) int {
+  return playerNumber - 1
 }
