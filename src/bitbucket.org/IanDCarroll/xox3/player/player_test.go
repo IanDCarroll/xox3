@@ -17,7 +17,7 @@ func buildTestPlayer(board board.Board) player {
 
 func TestPlayerReturnsTheGameState(t *testing.T) {
   //Given
-  board := buildMNK3Board()
+  board := board.NewMNKX(3)
   subject := buildTestPlayer(board)
   //When
   actualGameOver, actualMarker := subject.TakeATurn()
@@ -30,7 +30,7 @@ func TestPlayerReturnsTheGameState(t *testing.T) {
 
 func TestPlayerMarksTheBoard(t *testing.T) {
   //Given
-  board := buildMNK3Board()
+  board := board.NewMNKX(3)
   subject := buildTestPlayer(board)
   //When
   actualGameOver, actualMarker := subject.TakeATurn()
@@ -46,7 +46,7 @@ func TestPlayerMarksTheBoard(t *testing.T) {
 
 func TestPlayerReturnsAWonGameState(t *testing.T) {
   //Given
-  board := buildMNK3Board()
+  board := board.NewMNKX(3)
   subject := buildTestPlayer(board)
   board.Mark(0, 1)
   board.Mark(1, 1)
