@@ -7,15 +7,15 @@ import (
 
 type ai struct {
   rules rules.Rules
-  board board.Board
+  publicBoard board.Board
   identity int
   opponent int
 }
 
-func NewMNKAi(rules rules.Rules, board board.Board) *ai {
+func NewMNKAi(rules rules.Rules, publicBoard board.Board) *ai {
   defaultId := 1
   defaultOp := 2
-  return &ai {rules, board, defaultId, defaultOp}
+  return &ai {rules, publicBoard, defaultId, defaultOp}
 }
 
 func (ai *ai) SetID(id int) {
@@ -30,5 +30,6 @@ func (ai *ai) GetMove() int {
 }
 
 func (ai *ai) dumbButLegalMove() int {
-  return ai.board.AvailableSpaces()[0]
+  board := board.Board(ai.publicBoard)
+  return board.AvailableSpaces()[0]
 }
