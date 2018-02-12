@@ -1,12 +1,12 @@
 package main
 
 import (
-  "fmt"
   "bitbucket.org/IanDCarroll/xox3/menu"
+  "bitbucket.org/IanDCarroll/xox3/gameRunner"
 )
 
 func main() {
   menu := menu.BuildMenu()
-  order, marker := menu.GetGameParams()
-  fmt.Println("main got : ", order, " ", marker)
+  gameRunner := gameRunner.BuildAiGameRunner(menu.GetGameParams())
+  gameRunner.PlayGame()
 }

@@ -7,7 +7,7 @@ import (
 )
 
 type Menu interface {
-  GetGameParams() (int, int)
+  GetGameParams() (int, int, []string)
 }
 
 type menu struct {
@@ -19,12 +19,12 @@ func New(ui ui.Ui, rec menuRec.Rec) menu {
   return menu {ui, rec}
 }
 
-func (m menu) GetGameParams() (int, int) {
+func (m menu) GetGameParams() (int, int, []string) {
   m.ui.GiveToDisplay(m.rec.Welcome())
   order := m.askForPlayOrder()
   marker := m.askForMarker()
   m.ui.GiveToDisplay(m.rec.StartGame())
-  return order, marker
+  return order, marker, m.rec.Markers()
 }
 
 func (m menu) askForPlayOrder() int {
