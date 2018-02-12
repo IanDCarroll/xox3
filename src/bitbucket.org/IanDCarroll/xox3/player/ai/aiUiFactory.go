@@ -11,14 +11,14 @@ import (
 
 func BuildAiUi(board board.Board, humanSpy display.Display) ui.Ui {
   ai := buildMNK3Ai(board)
-  display := buildAiSpyDisplay(humanSpy)
+  display := buildAiSpyDisplay(humanSpy, ai)
   selector := buildAiSelector(ai)
   return ui.New(display, selector)
 }
 
-func buildAiSpyDisplay(humanSpy display.Display) display.Display {
+func buildAiSpyDisplay(humanSpy display.Display, ai Ai) display.Display {
   rec := rec.NewEnglish()
-  return NewAiSpyDisplay(rec, humanSpy)
+  return NewAiSpyDisplay(rec, humanSpy, ai)
 }
 
 func buildAiSelector(ai Ai) selector.Selector {
