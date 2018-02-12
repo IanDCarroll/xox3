@@ -3,7 +3,6 @@ package gameRunner
 import (
   "bitbucket.org/IanDCarroll/xox3/player"
   "bitbucket.org/IanDCarroll/xox3/ui/display"
-  "fmt"
 )
 
 type GameRunner interface {
@@ -21,5 +20,16 @@ func NewGameRunner(player1 player.Player, player2 player.Player, display display
 }
 
 func (g gameRunner) PlayGame() {
-  fmt.Println("The game is playing")
+  gameover := false
+  winner := 0
+  for move := 1; !gameover; move++ {
+      gameover, winner = g.togglePlayers(move)
+  }
+  g.display.WriteToShell(winner)
+}
+
+func (g gameRunner) togglePlayers(move int) (bool, int) {
+  modulator := move % 2
+  if modulator == 1 { return g.player1.TakeATurn() }
+  return g.player2.TakeATurn()
 }
