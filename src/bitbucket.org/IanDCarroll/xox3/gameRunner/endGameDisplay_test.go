@@ -7,7 +7,7 @@ import (
 func TestAiEndgameReturnsADrawMessage(t * testing.T) {
   //Given
   aiPlayer := 2
-  rec := BuildGameRec()
+  rec := buildGameRec()
   subject := NewEndGameDisplay(aiPlayer, rec, displayStub {})
   winner := 0
   //When
@@ -20,7 +20,7 @@ func TestAiEndgameReturnsADrawMessage(t * testing.T) {
 func TestAiEndgameReturnsAnAiWinMessage(t * testing.T) {
   //Given
   aiPlayer := 2
-  rec := BuildGameRec()
+  rec := buildGameRec()
   subject := NewEndGameDisplay(aiPlayer, rec, displayStub {})
   winner := 2
   //When
@@ -33,7 +33,7 @@ func TestAiEndgameReturnsAnAiWinMessage(t * testing.T) {
 func TestAiEndgameReturnsAPlayerWinMessage(t * testing.T) {
   //Given
   aiPlayer := 2
-  rec := BuildGameRec()
+  rec := buildGameRec()
   subject := NewEndGameDisplay(aiPlayer, rec, displayStub {})
   winner := 1
   //When

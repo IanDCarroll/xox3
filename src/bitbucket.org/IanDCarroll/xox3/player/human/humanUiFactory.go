@@ -16,30 +16,30 @@ var terminalIn shell.ShellIn = shell.NewTerminal()
 var messengerRec messageRec.Rec = rec.NewEnglish()
 
 func BuildHumanUi(markers []string, board board.Board) ui.Ui {
-  display := BuildInGameTerminalDisplay(markers, terminalOut, board)
-  selector := buildInGameTerminalSelector(terminalIn)
-  return NewUI(display, selector, board, messengerRec)
+  display := BuildInGameTerminalDisplay(markers, board)
+  selector := buildInGameTerminalSelector()
+  return NewHumanUI(display, selector, board, messengerRec)
 }
 
-func BuildInGameTerminalDisplay(m []string, s shell.ShellOut, b board.Board) display.Display {
-  messenger := BuildMessageDisplay(s)
-  carpenter := BuildBoardDisplay(m, s, b)
+func BuildInGameTerminalDisplay(markers []string, board board.Board) display.Display {
+  messenger := buildMessageDisplay()
+  carpenter := buildBoardDisplay(markers, board)
   return NewInGameTerminalDisplay(messenger, carpenter)
 }
 
-func BuildMessageDisplay(shell shell.ShellOut) display.Display {
-  return NewMessageDisplay(shell, messengerRec)
+func buildMessageDisplay() display.Display {
+  return NewMessageDisplay(terminalOut, messengerRec)
 }
 
-func BuildBoardDisplay(markers []string, shell shell.ShellOut, board board.Board) display.Display {
-  rec := BuildBoardRec(markers)
-  return NewBoardDisplay(shell, rec, board)
+func buildBoardDisplay(markers []string, board board.Board) display.Display {
+  rec := buildBoardRec(markers)
+  return NewBoardDisplay(terminalOut, rec, board)
 }
 
-func BuildBoardRec(markers []string) boardRec.Rec {
+func buildBoardRec(markers []string) boardRec.Rec {
   return boardRec.NewTerminalRec(markers)
 }
 
-func buildInGameTerminalSelector(shell shell.ShellIn) selector.Selector {
-  return NewInGameTerminalSelector(shell)
+func buildInGameTerminalSelector() selector.Selector {
+  return NewInGameTerminalSelector(terminalIn)
 }

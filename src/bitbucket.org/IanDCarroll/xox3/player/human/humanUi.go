@@ -16,7 +16,7 @@ type humanUi struct {
 
 }
 
-func NewUI(d display.Display, s selector.Selector, b board.Board, r messageRec.Rec) humanUi {
+func NewHumanUI(d display.Display, s selector.Selector, b board.Board, r messageRec.Rec) humanUi {
   return humanUi {d, s, b, r}
 }
 

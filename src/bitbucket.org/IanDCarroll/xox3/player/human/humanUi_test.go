@@ -10,7 +10,7 @@ import (
 func TestSpaceIsUnavailableReturnsTrueIfTheSpaceIsTaken(t *testing.T) {
   //Given
   board := board.NewMNKX(3)
-  subject := NewUI(displayStub {}, selectorMock {}, board, rec.NewEnglish())
+  subject := NewHumanUI(displayStub {}, selectorMock {}, board, rec.NewEnglish())
   board.Mark(0, 1)
   //When
   actual := subject.spaceIsUnavailable(1)
@@ -22,7 +22,7 @@ func TestSpaceIsUnavailableReturnsTrueIfTheSpaceIsTaken(t *testing.T) {
 func TestSpaceIsUnavailableReturnsTrueIfTheSpaceIsTooHigh(t *testing.T) {
   //Given
   board := board.NewMNKX(3)
-  subject := NewUI(displayStub {}, selectorMock {}, board, rec.NewEnglish())
+  subject := NewHumanUI(displayStub {}, selectorMock {}, board, rec.NewEnglish())
   //When
   actual := subject.spaceIsUnavailable(10)
   //Then
@@ -33,7 +33,7 @@ func TestSpaceIsUnavailableReturnsTrueIfTheSpaceIsTooHigh(t *testing.T) {
 func TestSpaceIsUnavailableReturnsTrueIfTheSpaceIsOffTooLow(t *testing.T) {
   //Given
   board := board.NewMNKX(3)
-  subject := NewUI(displayStub {}, selectorMock {}, board, rec.NewEnglish())
+  subject := NewHumanUI(displayStub {}, selectorMock {}, board, rec.NewEnglish())
   //When
   actual := subject.spaceIsUnavailable(0)
   //Then
@@ -44,7 +44,7 @@ func TestSpaceIsUnavailableReturnsTrueIfTheSpaceIsOffTooLow(t *testing.T) {
 func TestSpaceIsUnavailableReturnsFalseIfTheSpaceIsEmpty(t *testing.T) {
   //Given
   board := board.NewMNKX(3)
-  subject := NewUI(displayStub {}, selectorMock {}, board, rec.NewEnglish())
+  subject := NewHumanUI(displayStub {}, selectorMock {}, board, rec.NewEnglish())
   board.Mark(0, 1)
   //When
   actual := subject.spaceIsUnavailable(2)
@@ -56,7 +56,7 @@ func TestSpaceIsUnavailableReturnsFalseIfTheSpaceIsEmpty(t *testing.T) {
 func TestInvalidReturnsFalseIfTheSpaceIsEmptyAndTheInputIsSane(t *testing.T) {
   //Given
   board := board.NewMNKX(3)
-  subject := NewUI(displayStub {}, selectorMock {}, board, rec.NewEnglish())
+  subject := NewHumanUI(displayStub {}, selectorMock {}, board, rec.NewEnglish())
   saneInput := "5"
   //When
   actual := subject.invalid(strconv.Atoi(saneInput))
@@ -68,7 +68,7 @@ func TestInvalidReturnsFalseIfTheSpaceIsEmptyAndTheInputIsSane(t *testing.T) {
 func TestInvalidReturnsTrueIfTheInputIsSaneButTheSpaceIsUnavailable(t *testing.T) {
   //Given
   board := board.NewMNKX(3)
-  subject := NewUI(displayStub {}, selectorMock {}, board, rec.NewEnglish())
+  subject := NewHumanUI(displayStub {}, selectorMock {}, board, rec.NewEnglish())
   board.Mark(4, 1)
   saneInput := "5"
   //When
@@ -81,7 +81,7 @@ func TestInvalidReturnsTrueIfTheInputIsSaneButTheSpaceIsUnavailable(t *testing.T
 func TestInvalidReturnsTrueIfTheInputIsInsane(t *testing.T) {
   //Given
   board := board.NewMNKX(3)
-  subject := NewUI(displayStub {}, selectorMock {}, board, rec.NewEnglish())
+  subject := NewHumanUI(displayStub {}, selectorMock {}, board, rec.NewEnglish())
   saneInput := "Five"
   //When
   actual := subject.invalid(strconv.Atoi(saneInput))

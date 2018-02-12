@@ -1,7 +1,6 @@
 package gameRunner
 
 import (
-  "bitbucket.org/IanDCarroll/xox3/ui/shell"
   "bitbucket.org/IanDCarroll/xox3/ui/display"
   "bitbucket.org/IanDCarroll/xox3/rec"
   "bitbucket.org/IanDCarroll/xox3/gameRunner/gameRec"
@@ -10,8 +9,6 @@ import (
   "bitbucket.org/IanDCarroll/xox3/board"
 )
 
-var terminalOut shell.ShellOut = shell.NewTerminal()
-
 func BuildAiGameRunner(humanGoes, marker int, markers []string) GameRunner {
   mappedMarkers := mapMarkers(humanGoes, marker, markers)
   board := board.NewMNKX(3)
@@ -19,11 +16,16 @@ func BuildAiGameRunner(humanGoes, marker int, markers []string) GameRunner {
   return buildAiFirst(humanGoes, mappedMarkers, board)
 }
 
+func mapMarkers(humanGoes, markerChoice int, markers []string) []string {
+  if humanGoes != markerChoice { return []string{markers[1], markers[0]} }
+  return markers
+}
+
 func buildHumanFirst(humanGoes int, markers []string, board board.Board) GameRunner {
   aiGoes := 2
   human := player.BuildHumanPlayer(humanGoes, markers, board)
   ai := player.BuildAiPlayer(aiGoes, markers, board)
-  display := BuildEndGameDisplay(aiGoes, markers, board)
+  display := buildEndGameDisplay(aiGoes, markers, board)
   return NewGameRunner(human, ai, display)
 }
 
@@ -31,21 +33,16 @@ func buildAiFirst(humanGoes int, markers []string, board board.Board) GameRunner
   aiGoes := 1
   human := player.BuildHumanPlayer(humanGoes, markers, board)
   ai := player.BuildAiPlayer(aiGoes, markers, board)
-  display := BuildEndGameDisplay(aiGoes, markers, board)
+  display := buildEndGameDisplay(aiGoes, markers, board)
   return NewGameRunner(ai, human, display)
 }
 
-func mapMarkers(humanGoes, markerChoice int, markers []string) []string {
-  if humanGoes != markerChoice { return []string{markers[1], markers[0]} }
-  return markers
-}
-
-func BuildEndGameDisplay(aiPlayer int, markers []string, board board.Board) display.Display {
-  rec := BuildGameRec()
-  host := human.BuildInGameTerminalDisplay(markers, terminalOut, board)
+func buildEndGameDisplay(aiPlayer int, markers []string, board board.Board) display.Display {
+  rec := buildGameRec()
+  host := human.BuildInGameTerminalDisplay(markers, board)
   return NewEndGameDisplay(aiPlayer, rec, host)
 }
 
-func BuildGameRec() gameRec.Rec {
+func buildGameRec() gameRec.Rec {
   return rec.NewEnglish()
 }

@@ -1,7 +1,6 @@
 package player
 
 import (
-  "bitbucket.org/IanDCarroll/xox3/ui/shell"
   "bitbucket.org/IanDCarroll/xox3/ui/display"
   "bitbucket.org/IanDCarroll/xox3/ui/selector"
   "bitbucket.org/IanDCarroll/xox3/ui"
@@ -11,8 +10,6 @@ import (
   "bitbucket.org/IanDCarroll/xox3/player/ai"
 )
 
-var terminalOut shell.ShellOut = shell.NewTerminal()
-
 func BuildHumanPlayer(playerNumber int, markers []string, board board.Board) player {
   ui := human.BuildHumanUi(markers, board)
   rules := buildMNK3Rules()
@@ -20,7 +17,7 @@ func BuildHumanPlayer(playerNumber int, markers []string, board board.Board) pla
 }
 
 func BuildAiPlayer(playerNumber int, markers []string, board board.Board) player {
-  spy := human.BuildInGameTerminalDisplay(markers, terminalOut, board)
+  spy := human.BuildInGameTerminalDisplay(markers, board)
   ui := ai.BuildAiUi(board, spy)
   rules := buildMNK3Rules()
   return New(ui, rules, board, playerNumber)
