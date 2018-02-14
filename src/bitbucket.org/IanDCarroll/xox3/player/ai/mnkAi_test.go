@@ -213,13 +213,18 @@ func TestOptimumChoiceWhenTheBoardIsAlreadyDrawn(t * testing.T) {
   b.Mark(7,2)
   b.Mark(8,1)
   boardCopy := board.Board(b)
-  depth := 0
   choices := map[int]int{}
   //When
-  actualChoice := subject.optimumChoice(boardCopy, depth, choices)
+  actualAtDepth0 := subject.optimumChoice(boardCopy, 0, choices)
+  actualAtDepth1 := subject.optimumChoice(boardCopy, 1, choices)
+  actualAtDepth2 := subject.optimumChoice(boardCopy, 2, choices)
   //Then
-  expectedChoice := 0
-  assertIntEqual(t, actualChoice, expectedChoice)
+  expectedAtDepth0 := -10
+  expectedAtDepth1 := -9
+  expectedAtDepth2 := -8
+  assertIntEqual(t, actualAtDepth0, expectedAtDepth0)
+  assertIntEqual(t, actualAtDepth1, expectedAtDepth1)
+  assertIntEqual(t, actualAtDepth2, expectedAtDepth2)
 }
 
 func TestOptimumChoiceWhenTheBoardIsLostAtTheLastMoveAndAiIsP2(t * testing.T) {
@@ -238,13 +243,18 @@ func TestOptimumChoiceWhenTheBoardIsLostAtTheLastMoveAndAiIsP2(t * testing.T) {
   b.Mark(7,2)
   b.Mark(8,2)
   boardCopy := board.Board(b)
-  depth := 0
   choices := map[int]int{}
   //When
-  actualChoice := subject.optimumChoice(boardCopy, depth, choices)
+  actualAtDepth0 := subject.optimumChoice(boardCopy, 0, choices)
+  actualAtDepth1 := subject.optimumChoice(boardCopy, 1, choices)
+  actualAtDepth2 := subject.optimumChoice(boardCopy, 2, choices)
   //Then
-  expectedChoice := -1
-  assertIntEqual(t, actualChoice, expectedChoice)
+  expectedAtDepth0 := -10000
+  expectedAtDepth1 := -9999
+  expectedAtDepth2 := -9998
+  assertIntEqual(t, actualAtDepth0, expectedAtDepth0)
+  assertIntEqual(t, actualAtDepth1, expectedAtDepth1)
+  assertIntEqual(t, actualAtDepth2, expectedAtDepth2)
 }
 
 func TestOptimumChoiceWhenTheBoardIsWonAtTheLastMoveAndAiIsP1(t * testing.T) {
@@ -263,13 +273,18 @@ func TestOptimumChoiceWhenTheBoardIsWonAtTheLastMoveAndAiIsP1(t * testing.T) {
   b.Mark(7,2)
   b.Mark(8,2)
   boardCopy := board.Board(b)
-  depth := 0
   choices := map[int]int{}
   //When
-  actualChoice := subject.optimumChoice(boardCopy, depth, choices)
+  actualAtDepth0 := subject.optimumChoice(boardCopy, 0, choices)
+  actualAtDepth1 := subject.optimumChoice(boardCopy, 1, choices)
+  actualAtDepth2 := subject.optimumChoice(boardCopy, 2, choices)
   //Then
-  expectedChoice := 100
-  assertIntEqual(t, actualChoice, expectedChoice)
+  expectedAtDepth0 := 10000
+  expectedAtDepth1 := 9999
+  expectedAtDepth2 := 9998
+  assertIntEqual(t, actualAtDepth0, expectedAtDepth0)
+  assertIntEqual(t, actualAtDepth1, expectedAtDepth1)
+  assertIntEqual(t, actualAtDepth2, expectedAtDepth2)
 }
 
 func TestOptimumChoiceWhenTheBoardIsLostEarlyAndAiIsP2(t * testing.T) {
@@ -288,13 +303,18 @@ func TestOptimumChoiceWhenTheBoardIsLostEarlyAndAiIsP2(t * testing.T) {
   b.Mark(7,2)
   b.Mark(8,2)
   boardCopy := board.Board(b)
-  depth := 0
   choices := map[int]int{}
   //When
-  actualChoice := subject.optimumChoice(boardCopy, depth, choices)
+  actualAtDepth0 := subject.optimumChoice(boardCopy, 0, choices)
+  actualAtDepth1 := subject.optimumChoice(boardCopy, 1, choices)
+  actualAtDepth2 := subject.optimumChoice(boardCopy, 2, choices)
   //Then
-  expectedChoice := -1
-  assertIntEqual(t, actualChoice, expectedChoice)
+  expectedAtDepth0 := -10000
+  expectedAtDepth1 := -9999
+  expectedAtDepth2 := -9998
+  assertIntEqual(t, actualAtDepth0, expectedAtDepth0)
+  assertIntEqual(t, actualAtDepth1, expectedAtDepth1)
+  assertIntEqual(t, actualAtDepth2, expectedAtDepth2)
 }
 
 func TestOptimumChoiceWhenTheBoardIsWonEarlyAndAiIsP2(t * testing.T) {
@@ -313,13 +333,18 @@ func TestOptimumChoiceWhenTheBoardIsWonEarlyAndAiIsP2(t * testing.T) {
   b.Mark(7,2)
   b.Mark(8,2)
   boardCopy := board.Board(b)
-  depth := 0
   choices := map[int]int{}
   //When
-  actualChoice := subject.optimumChoice(boardCopy, depth, choices)
+  actualAtDepth0 := subject.optimumChoice(boardCopy, 0, choices)
+  actualAtDepth1 := subject.optimumChoice(boardCopy, 1, choices)
+  actualAtDepth2 := subject.optimumChoice(boardCopy, 2, choices)
   //Then
-  expectedChoice := 100
-  assertIntEqual(t, actualChoice, expectedChoice)
+  expectedAtDepth0 := 10000
+  expectedAtDepth1 := 9999
+  expectedAtDepth2 := 9998
+  assertIntEqual(t, actualAtDepth0, expectedAtDepth0)
+  assertIntEqual(t, actualAtDepth1, expectedAtDepth1)
+  assertIntEqual(t, actualAtDepth2, expectedAtDepth2)
 }
 
 func TestOptimumChoiceWhenTheBoardWillBeDrawn(t * testing.T) {
@@ -563,6 +588,32 @@ func TestOptimumChoiceWhenThereIsAnEarlyChanceToToWinOrLoseOn2(t * testing.T) {
   //6,0
   //7,0
   b.Mark(8,2)
+  boardCopy := board.Board(b)
+  depth := 0
+  choices := map[int]int{}
+  //When
+  actualChoice := subject.optimumChoice(boardCopy, depth, choices)
+  //Then
+  expectedChoice := 2
+  assertIntEqual(t, actualChoice, expectedChoice)
+}
+
+func TestOptimumChoiceDoestGiveUpEarlyEvenWhenTheGameIsLost(t * testing.T) {
+  //Given
+  rules := rules.NewMNKX(3)
+  b := board.NewMNKX(3)
+  subject := NewMNKAi(rules, b)
+  subject.SetID(2)
+  //0,1
+  b.Mark(1,1)
+  //2,0
+  //3,0
+  //4,0
+  //4,0
+  b.Mark(5,1)
+  b.Mark(6,2)
+  b.Mark(7,2)
+  b.Mark(8,1)
   boardCopy := board.Board(b)
   depth := 0
   choices := map[int]int{}

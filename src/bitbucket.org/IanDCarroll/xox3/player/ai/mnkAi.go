@@ -35,11 +35,11 @@ func (ai *ai) GetMove() int {
 func (ai *ai) optimumChoice(board board.Board, depth int, choices map[int]int) int {
   over, report := ai.rules.Gameover(board.View())
   if over && report == 0 {
-    return report
+    return depth - 10
   } else if over && report == ai.identity {
-    return 100
+    return 10000 - depth
   } else if over && report == ai.opponent {
-    return -1
+    return depth - 10000
   }
 
   spaces := board.AvailableSpaces()
