@@ -1,6 +1,15 @@
 # xox3 #
 An Unbeatable Noughts and Crosses Game
 
+Completed in 2 weeks in a language I had no familiarity with  
+Using all of the techniques learned in the apprenticeship  
+As proof of my ability to learn and deliver quality code  
+Without any advanced knowledge of the tools to be used
+
+Proof that its not what you already know that matters.  
+It's what principles you have, how you fail, how you learn,   
+and how you respond to change over following a plan.
+
 ### Dependencies ###
 
 - Go 1.9.3
